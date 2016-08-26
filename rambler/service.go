@@ -18,8 +18,8 @@ var (
 // Service is the struct that gather operations to manipulate the
 // database and migrations on disk
 type Service struct {
-	conn driver.Conn
-	env  Environment
+	Conn driver.Conn
+	Env  Environment
 }
 
 // NewService initialize a new service with the given environment
@@ -39,26 +39,26 @@ func NewService(env Environment) (*Service, error) {
 	}
 
 	return &Service{
-		conn: conn,
-		env:  env,
+		Conn: conn,
+		Env:  env,
 	}, nil
 }
 
 // Initialized check if the migration table exists in the
 // database
 func (s Service) Initialized() (bool, error) {
-	return s.conn.HasTable()
+	return s.Conn.HasTable()
 }
 
 // Initialize create the migration table in the database
 func (s Service) Initialize() error {
-	return s.conn.CreateTable()
+	return s.Conn.CreateTable()
 }
 
 // Available return the migrations in the environment's directory sorted in
 // ascending lexicographic order.
 func (s Service) Available() ([]*Migration, error) {
-	files, _ := filepath.Glob(filepath.Join(s.env.Directory, "*.sql")) // The only possible error here is a pattern error
+	files, _ := filepath.Glob(filepath.Join(s.Env.Directory, "*.sql")) // The only possible error here is a pattern error
 
 	var migrations []*Migration
 	for _, file := range files {
@@ -80,14 +80,14 @@ func (s Service) Available() ([]*Migration, error) {
 // Applied return the migrations in the environment's directory that are marked
 // as applied in the database sorted in ascending lexicographic order.
 func (s Service) Applied() ([]*Migration, error) {
-	files, err := s.conn.GetApplied()
+	files, err := s.Conn.GetApplied()
 	if err != nil {
 		return nil, err
 	}
 
 	var migrations []*Migration
 	for _, file := range files {
-		migration, err := NewMigration(filepath.Join(s.env.Directory, file))
+		migration, err := NewMigration(filepath.Join(s.Env.Directory, file))
 		if err != nil {
 			return nil, err
 		}
@@ -110,13 +110,13 @@ func (s Service) Apply(migration *Migration) error {
 	}
 
 	for _, statement := range migration.Up() {
-		err := s.conn.Execute(statement)
+		err := s.Conn.Execute(statement)
 		if err != nil {
 			return fmt.Errorf("unable to apply migration %s: %s\n%s", migration.Name, err, statement)
 		}
 	}
 
-	err := s.conn.AddApplied(migration.Name)
+	err := s.Conn.AddApplied(migration.Name)
 	if err != nil {
 		return fmt.Errorf("unable to mark migration %s as applied: %s", migration.Name, err)
 	}
@@ -132,13 +132,13 @@ func (s Service) Reverse(migration *Migration) error {
 	}
 
 	for _, statement := range migration.Down() {
-		err := s.conn.Execute(statement)
+		err := s.Conn.Execute(statement)
 		if err != nil {
 			return fmt.Errorf("unable to reverse migration %s: %s\n%s", migration.Name, err, statement)
 		}
 	}
 
-	err := s.conn.RemoveApplied(migration.Name)
+	err := s.Conn.RemoveApplied(migration.Name)
 	if err != nil {
 		return fmt.Errorf("unable to mark migration %s as not applied: %s", migration.Name, err)
 	}

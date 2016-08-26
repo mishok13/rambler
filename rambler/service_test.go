@@ -108,7 +108,7 @@ func TestServiceAvailable(t *testing.T) {
 
 	for n, c := range cases {
 		service := &Service{
-			env: Environment{
+			Env: Environment{
 				Directory: c.directory,
 			},
 		}
@@ -190,10 +190,10 @@ func TestServiceApplied(t *testing.T) {
 
 	for n, c := range cases {
 		service := &Service{
-			env: Environment{
+			Env: Environment{
 				Directory: c.directory,
 			},
-			conn: MockConn{
+			Conn: MockConn{
 				getApplied: func() ([]string, error) {
 					return c.table, c.fail
 				},
@@ -308,7 +308,7 @@ fourth
 	for n, c := range cases {
 		var executed, applied []string
 		service := &Service{
-			conn: MockConn{
+			Conn: MockConn{
 				execute: func(statement string) error {
 					executed = append(executed, statement)
 					return c.executeFail
@@ -426,7 +426,7 @@ fourth
 	for n, c := range cases {
 		var executed, reversed []string
 		service := &Service{
-			conn: MockConn{
+			Conn: MockConn{
 				execute: func(statement string) error {
 					executed = append(executed, statement)
 					return c.executeFail
