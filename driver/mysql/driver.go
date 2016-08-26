@@ -38,7 +38,12 @@ type Conn struct {
 // HasTable check if the schema has the migration table needed for Rambler to operate on it.
 func (c Conn) HasTable() (bool, error) {
 	var table string
-	err := c.db.QueryRow(`select table_name from information_schema.tables where table_schema = ? and table_name = ?`, c.schema, c.table).Scan(&table)
+	_, err := c.db.Exec("DO 1")
+	if err != nil {
+		fmt.Printf("unexpected error with database: %s", err)
+		return false, err
+	}
+	err = c.db.QueryRow(`select table_name from information_schema.tables where table_schema = ? and table_name = ?`, c.schema, c.table).Scan(&table)
 	if err != nil && err != sql.ErrNoRows {
 		return false, err
 	}
