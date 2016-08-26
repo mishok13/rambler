@@ -7,7 +7,7 @@ all: fetch build test
 
 .PHONY: build
 build: ## Build the binary for the local architecture
-	go build --ldflags=$(LDFLAGS)
+	@go build --ldflags=$(LDFLAGS) -o dist/rambler
 
 .PHONY: fetch
 fetch: ## Fetch the dependencies

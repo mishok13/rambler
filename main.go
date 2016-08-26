@@ -4,12 +4,14 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/elwinar/rambler/log"
-	"github.com/urfave/cli"
+	"github.com/TommyM/rambler/rambler"
+	"github.com/codegangsta/cli"
+	_ "github.com/elwinar/rambler/driver/mysql"
+	_ "github.com/elwinar/rambler/driver/postgresql"
+	_ "github.com/elwinar/rambler/driver/sqlite"
 )
 
-var service *Service
-var logger *log.Logger
+var app *cli.App
 
 // VERSION holds the version of rambler as defined at compile time.
 var VERSION string
@@ -43,9 +45,7 @@ func main() {
 			Usage: "display debug messages",
 		},
 	}
-
-	app.Before = Bootstrap
-
+	app.Before = rambler.Bootstrap
 	app.Commands = []cli.Command{
 		{
 			Name:  "apply",
@@ -56,7 +56,7 @@ func main() {
 					Usage: "Apply all migrations",
 				},
 			},
-			Action: Apply,
+			Action: rambler.Apply,
 		},
 		{
 			Name:  "reverse",
@@ -67,7 +67,7 @@ func main() {
 					Usage: "Reverse all migrations",
 				},
 			},
-			Action: Reverse,
+			Action: rambler.Reverse,
 		},
 	}
 
