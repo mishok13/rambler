@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/codegangsta/cli"
 	_ "github.com/mishok13/rambler/driver/mysql"
 	_ "github.com/mishok13/rambler/driver/postgresql"
 	_ "github.com/mishok13/rambler/driver/sqlite"
 	"github.com/mishok13/rambler/rambler"
+	"github.com/urfave/cli"
 )
 
 var app *cli.App
