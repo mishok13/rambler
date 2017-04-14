@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/TommyM/rambler/driver"
 	_ "github.com/lib/pq" // Working with the lib/pq PostgreSQL driver here.
+	"github.com/mishok13/rambler/driver"
 )
 
 func init() {

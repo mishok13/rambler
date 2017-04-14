@@ -9,6 +9,7 @@ import (
 )
 
 var service *Service
+var logger *log.Logger
 
 // Bootstrap do the initialization job, and finish by setting the
 // `service` global var that will be used by other commands.
