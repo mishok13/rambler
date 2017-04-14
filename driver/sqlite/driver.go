@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/TommyM/rambler/driver"
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/mishok13/rambler/driver"
 )
 
 func init() {
