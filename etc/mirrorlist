@@ -13,7 +13,6 @@
 # Switzerland
 # United Kingdom
 #Server = http://arch.tamcore.eu/$repo/os/$arch
-Server = https://mirror.compojoom.com/archlinux/$repo/os/$arch
 Server = http://mirror.archlinux.ikoula.com/archlinux/$repo/os/$arch
 Server = http://archlinux.de-labrusse.fr/$repo/os/$arch
 Server = http://mir.archlinux.fr/$repo/os/$arch
