@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/mishok13/rambler/driver"
+	"github.com/sbp-contrib/rambler/driver"
 )
 
 func init() {

@@ -3,9 +3,9 @@ package rambler
 import (
 	"testing"
 
-	_ "github.com/mishok13/rambler/driver/mysql"
-	_ "github.com/mishok13/rambler/driver/postgresql"
-	_ "github.com/mishok13/rambler/driver/sqlite"
+	_ "github.com/sbp-contrib/rambler/driver/mysql"
+	_ "github.com/sbp-contrib/rambler/driver/postgresql"
+	_ "github.com/sbp-contrib/rambler/driver/sqlite"
 )
 
 func TestBootstrap(t *testing.T) {
