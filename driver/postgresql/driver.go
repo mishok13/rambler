@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	_ "github.com/lib/pq" // Working with the lib/pq PostgreSQL driver here.
-	"github.com/mishok13/rambler/driver"
+	"github.com/sbp-contrib/rambler/driver"
 )
 
 func init() {

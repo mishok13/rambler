@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/bradfitz/slice"
-	"github.com/mishok13/rambler/driver"
+	"github.com/sbp-contrib/rambler/driver"
 )
 
 var (

@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	_ "github.com/mishok13/rambler/driver/mysql"
-	_ "github.com/mishok13/rambler/driver/postgresql"
-	_ "github.com/mishok13/rambler/driver/sqlite"
-	"github.com/mishok13/rambler/rambler"
+	_ "github.com/sbp-contrib/rambler/driver/mysql"
+	_ "github.com/sbp-contrib/rambler/driver/postgresql"
+	_ "github.com/sbp-contrib/rambler/driver/sqlite"
+	"github.com/sbp-contrib/rambler/rambler"
 	"github.com/urfave/cli"
 )
 

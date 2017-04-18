@@ -1,6 +1,6 @@
 TARGETS="windows/amd64,windows/386,darwin/amd64,darwin/386,linux/amd64,linux/386"
 LDFLAGS="-X main.VERSION=`git describe --tags` -linkmode external -extldflags -w"
-PKG="github.com/mishok13/rambler"
+PKG="github.com/sbp-contrib/rambler"
 
 default: build
 all: fetch build test

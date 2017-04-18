@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql" // Where are working with the go-sql-driver/mysql driver for database/sql.
-	"github.com/mishok13/rambler/driver"
+	"github.com/sbp-contrib/rambler/driver"
 )
 
 func init() {
